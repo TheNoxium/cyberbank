@@ -1,7 +1,8 @@
 <?php
+$access2 = 0;
 /*
-* Функция проверки пользователя
-*/
+ * Функция проверки пользователя
+ */
 function authentication($Login, $Password)
 {
     global $db;
@@ -16,8 +17,9 @@ function access($getAccess)
 {
     switch ($getAccess) {
         case 1:
-            return '<span style="color: RED; ">Администратор</span>';
+            return '<a href="../admin/list">[Администрирование]</a>';
         default:
             return '<span style="color: GREEN; ">Пользователь</span>';
     }
 }
+
