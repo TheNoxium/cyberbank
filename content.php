@@ -18,8 +18,8 @@ $logtrans2 = mysqli_fetch_assoc($logtrans);
 $balans2 = htmlspecialchars($logtrans2['Balans']);
 $balans = htmlspecialchars($user['Balans']);
 
-echo $balans;
-echo $balans2;
+echo $balans - $balans2;
+
 }
 ?>
 </pre>
