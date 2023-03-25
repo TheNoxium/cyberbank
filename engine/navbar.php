@@ -1,9 +1,19 @@
-
-<div>
-   <ul>
-       <li><a href="<?php echo URL; ?>">Главная</a></li>
-       <li><a href="<?php echo URL; ?>/auth">Вход</a></li>
-       <li><a href="<?php echo URL; ?>/reg">Регистрация</a></li>
-       <li><a href="<?php echo URL; ?>/?logout">Выход</a></li>
-   </ul>
-</div>
+<?php
+switch ($user['access']) {
+    case 1:
+        echo '<li class="nav-item"><a href="' . URL . '/admin/list" class="nav-link a-btn">Админ-панель</a></li>';
+        break;
+}
+switch (!$user) {
+    case 1:
+        echo '
+                                    <li class="nav-item"><a href="' . URL . '/auth/" class="nav-link a-btn">Вход</a></li>
+                                    <li class="nav-item"><a href="' . URL . '/reg/" class="nav-link a-btn">Регистрация</a></li>';
+        break;
+    case 0:
+        echo '
+                                    <li class="nav-item"><a href="' . URL . '/profile/" class="nav-link a-btn">Личный кабинет</a></li>
+                                    <li class="nav-item"><a href="' . URL . '/?logout" class="nav-link a-btn">Выход</a></li>';
+        break;
+}
+?>

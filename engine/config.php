@@ -31,6 +31,10 @@ require_once('functions.php');
  */
 $user = isset($_SESSION['Login'], $_SESSION['Password']) ? authentication($_SESSION['Login'], $_SESSION['Password']) : 0;
 
+
+
+
+
 switch ($user && isset($_GET['logout'])) {
     case 'logout':
         unset($_SESSION['Login'], $_SESSION['Password']);

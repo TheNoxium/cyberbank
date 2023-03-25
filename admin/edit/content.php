@@ -37,6 +37,12 @@ $assoc_2 = mysqli_fetch_assoc($query_2);
 
         <br><br>
 
+        <label for="Balans">Баланс:</label>
+        <label for="Balans"><?php echo htmlspecialchars($assoc_2['Balans']); ?></label>
+        <label for="Balans">ED</label>
+
+        <br><br>
+
         <label for="access_input">Уровень доступа</label>
         <select name="access" id="access_input">
             <option value="<?php echo intval($assoc_2['access']); ?>">Текущий: <?php echo access($assoc_2['access']); ?></option>
