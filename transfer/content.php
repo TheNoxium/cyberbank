@@ -33,30 +33,40 @@
             $balansfinal = $balans - $balanstransfer;
             $balansfinal2 = $balans2 + $balanstransfer;
 
+            if ($balansfinal > 0) {
 
+                $balansfinaltransfer = mysqli_real_escape_string($db, $balansfinal);
+                $balansfinaltransfer2 = mysqli_real_escape_string($db, $balansfinal2);
 
-            $balansfinaltransfer = mysqli_real_escape_string($db, $balansfinal);
-            $balansfinaltransfer2 = mysqli_real_escape_string($db, $balansfinal2);
-
-
-
-
-
-
-            if (mysqli_query($db, "UPDATE Accounts SET Balans='$balansfinaltransfer2' WHERE `login`='$Logintransfer'")) {
-                $balans = $balansfinal;
-                mysqli_query($db, "UPDATE Accounts SET Balans='$balansfinaltransfer' WHERE `login`='$user_Login'");
-                header('Location: ' . URL . '');
-                echo 'Операция выполнена успешно!';
-                exit;
+                if ($Logintransfer !== $user_Login) {
 
 
 
 
+
+
+                    if (mysqli_query($db, "UPDATE Accounts SET Balans='$balansfinaltransfer2' WHERE `login`='$Logintransfer'")) {
+                        $balans = $balansfinal;
+                        mysqli_query($db, "UPDATE Accounts SET Balans='$balansfinaltransfer' WHERE `login`='$user_Login'");
+                        header('Location: ' . URL . '');
+                        echo 'Операция выполнена успешно!';
+                        exit;
+
+
+
+
+
+                    } else {
+                        header('Refresh: 10');
+                        echo 'Ошибка. Изменения не были сохранены. Страница обновится через 10 секунд.';
+                    }
+
+                } else {
+                    echo 'Ошибка. НЕльзя переводить деньги себе.';
+                }
 
             } else {
-                header('Refresh: 10');
-                echo 'Ошибка. Изменения не были сохранены. Страница обновится через 10 секунд.';
+                echo 'Ошибка. НЕхватает денег.';
             }
 
         } else {
@@ -101,7 +111,7 @@
         <br><br>
 
         <label for="balanstransfer">Сколько бабок вы хотите перевести </label>
-        <input name="balanstransfer" type="text" id="balanstransfer" placeholder="Введите сумму" required>
+        <input type=number name="balanstransfer" type="text" id="balanstransfer" placeholder="Введите сумму" required>
         <br><br>
 
         <button type="submit" name="edit1" class="">Сохранить</button>
