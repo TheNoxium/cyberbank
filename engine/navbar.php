@@ -16,7 +16,10 @@ switch (!$user) {
     case 0:
         echo '
                                     <li class="nav-item"><a href="' . URL . '/profile/" class="nav-link a-btn">Личный кабинет</a></li>
-                                    <li class="nav-item"><a href="' . URL . '/?logout" class="nav-link a-btn">Выход</a></li>';
+                                    <li class="nav-item"><a href="' . URL . '/?logout" class="nav-link a-btn">Выход</a></li>
+                                    <li class="nav-item"><a href="' . URL . '/transfer/" class="nav-link a-btn">Перевод</a></li>
+                                    <li class="nav-item"><a href="' . URL . '" class="nav-link a-btn">Главная</a></li>';
+                               
         break;
 }
 ?>
