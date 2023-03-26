@@ -1,5 +1,9 @@
 <pre>
     <?php
+    
+    
+    $user_ID = intval($user['ID']);
+    $user_Login = htmlspecialchars($user['Login']);
 
     if (isset($_POST['edit1'])) {
 
@@ -18,29 +22,68 @@
         $balans = htmlspecialchars($user['Balans']);
 
         $balansfinal = $balans - $balanstransfer;
-        echo $balansfinal;
+        $balansfinal2 = $balans2 + $balanstransfer;
+        
 
 
         $balansfinaltransfer = mysqli_real_escape_string($db, $balansfinal);
-       
+        $balansfinaltransfer2 = mysqli_real_escape_string($db, $balansfinal2);
 
-        if (mysqli_query($db, "UPDATE Accounts SET Balans='$balansfinaltransfer' WHERE `login`='$Logintransfer'")) {
+
+        
+        
+        mysqli_real_escape_string($db, $user['Login']);
+
+        $logtransuser = mysqli_query($db, "SELECT * FROM `Accounts` WHERE `login`='$user_Login'");
+
+        $logtransuser2 = mysqli_fetch_assoc($logtransuser);
+        
+
+        if (mysqli_query($db, "UPDATE Accounts SET Balans='$balansfinaltransfer' WHERE `login`='$user_Login'")) {
+            
+
+            
             
             echo 'Операция выполнена успешно!';
         } else {
             header('Refresh: 10');
             echo 'Ошибка. Изменения не были сохранены. Страница обновится через 10 секунд.';
         }
+        
 
 
 
+        if (mysqli_query($db, "UPDATE Accounts SET Balans='$balansfinaltransfer2' WHERE `login`='$Logintransfer'")) {
+            $balans2imput = htmlspecialchars($user['Balans']);
+            
+            
+            echo 'Операция выполнена успешно!';
+        } else {
+            header('Refresh: 10');
+            echo 'Ошибка. Изменения не были сохранены. Страница обновится через 10 секунд.';
+        }
+    
 
     }
     ?>
 </pre>
 
 Ваш баланс:
-<?php echo htmlspecialchars($user['Balans']); ?>
+<?php echo $balans2imput; ?><br>
+
+Баланс абонента:
+<?php echo $balans2; ?><br>
+
+Итог абонента: 
+<?php echo $balansfinal2; ?><br>
+Итог ваш: 
+<?php echo $balansfinal; ?><br>
+Ваш логин: 
+<?php echo $user_Login; ?><br>
+Ваш айди: 
+<?php echo $user_ID; ?><br>
+
+
 
 <div id="edit">
     <form method="post">
