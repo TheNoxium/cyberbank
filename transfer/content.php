@@ -48,8 +48,9 @@
                     if (mysqli_query($db, "UPDATE Accounts SET Balans='$balansfinaltransfer2' WHERE `login`='$Logintransfer'")) {
                         $balans = $balansfinal;
                         mysqli_query($db, "UPDATE Accounts SET Balans='$balansfinaltransfer' WHERE `login`='$user_Login'");
-                        header('Location: ' . URL . '');
                         echo 'Операция выполнена успешно!';
+                        
+                        header('Refresh: 5, url=../');
                         exit;
 
 
@@ -58,6 +59,7 @@
 
                     } else {
                         header('Refresh: 10');
+
                         echo 'Ошибка. Изменения не были сохранены. Страница обновится через 10 секунд.';
                     }
 
@@ -90,6 +92,8 @@
 Ваш баланс:
 <?php echo $balans; ?><br>
 
+<!-- проверка балансов абаонента 
+
 Баланс абонента:
 <?php echo $balans2; ?><br>
 
@@ -98,12 +102,14 @@
 Итог ваш:
 <?php echo $balansfinal; ?><br>
 
+-->
+
 
 <div id="edit">
     <form method="post">
 
-        <h3>Редактирование вашего профиля №
-            <?php echo $user_ID; ?>
+        <h3>Перевод денег c акаунта
+            <?php echo $user_Login; ?>
         </h3>
 
         <label for="logintransfer">Логин куда вы хотите послать бабки</label>
