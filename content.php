@@ -7,6 +7,13 @@
 
     if (isset($_POST['edit1'])) {
 
+        mysqli_real_escape_string($db, $user['Login']);
+
+        $logtransuser = mysqli_query($db, "SELECT * FROM `Accounts` WHERE `login`='$user_Login'");
+
+        $logtransuser2 = mysqli_fetch_assoc($logtransuser);
+
+
 
         $Logintransfer = $_POST['logintransfer'];
 
@@ -32,11 +39,18 @@
 
         
         
-        mysqli_real_escape_string($db, $user['Login']);
-
-        $logtransuser = mysqli_query($db, "SELECT * FROM `Accounts` WHERE `login`='$user_Login'");
-
-        $logtransuser2 = mysqli_fetch_assoc($logtransuser);
+      
+        
+        if (mysqli_query($db, "UPDATE Accounts SET Balans='$balansfinaltransfer2' WHERE `login`='$Logintransfer'")) {
+            $balans2imput = htmlspecialchars($user['Balans']);
+            
+            
+            echo 'Операция выполнена успешно!';
+        } else {
+            header('Refresh: 10');
+            echo 'Ошибка. Изменения не были сохранены. Страница обновится через 10 секунд.';
+        }
+    
         
 
         if (mysqli_query($db, "UPDATE Accounts SET Balans='$balansfinaltransfer' WHERE `login`='$user_Login'")) {
@@ -53,16 +67,6 @@
 
 
 
-        if (mysqli_query($db, "UPDATE Accounts SET Balans='$balansfinaltransfer2' WHERE `login`='$Logintransfer'")) {
-            $balans2imput = htmlspecialchars($user['Balans']);
-            
-            
-            echo 'Операция выполнена успешно!';
-        } else {
-            header('Refresh: 10');
-            echo 'Ошибка. Изменения не были сохранены. Страница обновится через 10 секунд.';
-        }
-    
 
     }
     ?>
