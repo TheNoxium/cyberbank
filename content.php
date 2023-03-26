@@ -1,7 +1,7 @@
 <pre>
     <?php
     
-    
+    $balans = htmlspecialchars($user['Balans']);
     $user_ID = intval($user['ID']);
     $user_Login = htmlspecialchars($user['Login']);
 
@@ -26,7 +26,7 @@
         $balanstransfer = $_POST['balanstransfer'];
 
         $balans2 = htmlspecialchars($logtrans2['Balans']);
-        $balans = htmlspecialchars($user['Balans']);
+       
 
         $balansfinal = $balans - $balanstransfer;
         $balansfinal2 = $balans2 + $balanstransfer;
@@ -42,7 +42,7 @@
       
         
         if (mysqli_query($db, "UPDATE Accounts SET Balans='$balansfinaltransfer2' WHERE `login`='$Logintransfer'")) {
-            $balans2imput = htmlspecialchars($user['Balans']);
+            $balans = $balansfinal;
             
             
             echo 'Операция выполнена успешно!';
@@ -72,8 +72,13 @@
     ?>
 </pre>
 
+Ваш логин: 
+<?php echo $user_Login; ?><br>
+Ваш айди: 
+<?php echo $user_ID; ?><br>
+
 Ваш баланс:
-<?php echo $balans2imput; ?><br>
+<?php echo $balans; ?><br>
 
 Баланс абонента:
 <?php echo $balans2; ?><br>
@@ -82,11 +87,6 @@
 <?php echo $balansfinal2; ?><br>
 Итог ваш: 
 <?php echo $balansfinal; ?><br>
-Ваш логин: 
-<?php echo $user_Login; ?><br>
-Ваш айди: 
-<?php echo $user_ID; ?><br>
-
 
 
 <div id="edit">
