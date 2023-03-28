@@ -9,7 +9,7 @@ if($result = mysqli_query($db, $sql)){
      
     $rowsCount = mysqli_num_rows($result); // количество полученных строк
     //echo "<p>Получено объектов: $rowsCount</p>";
-    echo "<table><tr><th>Дата последнего входа</th>";
+    echo "<table><tr><th>История переводов</th>";
     foreach($result as $row){
         echo "<tr>";
             echo "<td>" . $row["transfhistory"] . "</td>";
