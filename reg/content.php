@@ -1,3 +1,54 @@
+<?php
+if ( isset($_POST['reg']) )
+{
+    $Login = mysqli_real_escape_string($db, $_POST['Login']);
+    $Password = mysqli_real_escape_string($db, ($_POST['Password']));
+    $access = mysqli_real_escape_string($db, $_POST['access']);
+    $Balans	 = mysqli_real_escape_string($db, ($_POST['Balans	']));
+
+    $regCheck = "SELECT Login FROM Accounts WHERE Login = '$Login'";
+    $getValue = mysqli_query($db, $regCheck);
+
+    if ( mysqli_num_rows($getValue) > 0 )
+        echo '<span style="color: #ff0000; ">Логин занят</span>';
+    else if ( !mysqli_query($db, "INSERT INTO Accounts (Login,Password,access,Balans) VALUES ('$Login','$Password',0,0) ") ) {
+        header('Refresh: 10');
+        echo 'Произошла какая-то ошибка. <s>Страница обновится через 10 секунд</s>';
+    } else {
+        if ( isset($Login, $Password) ) {
+            if ( $result = !authentication($Login, $Password) ) {
+                echo '<span style="color: #ff0000; ">Произошла неизвестная ошибка</span>';
+            } else {
+                $_SESSION = array(
+                    'Login' => $Login,
+                    'Password' => $Password
+                );
+                //создание таблички
+                if (!$db) {
+                    die("Connection failed: " . mysqli_connect_error());
+                }
+                
+                echo $Login;
+            
+                
+                $sql = "CREATE TABLE `".$Login."` (reg_date TIMESTAMP)";
+            
+                if (mysqli_query($db, $sql)) {
+                    echo "Заебца табличка создана";
+                } else {
+                    echo "Error ошибка ты еблан: " . mysqli_error($db);
+                }
+            
+                mysqli_close($db);
+                //header('Location: ' . URL);
+                exit;
+            }
+        }
+    }
+}
+?>
+
+
 <form id="reg_form" method="POST">
     <b>Регистрация</b><br><br>
 
@@ -22,34 +73,3 @@
 
 <a href="<?php echo URL ?>">На главную</a>
 
-<?php
-if ( isset($_POST['reg']) )
-{
-    $Login = mysqli_real_escape_string($db, $_POST['Login']);
-    $Password = mysqli_real_escape_string($db, ($_POST['Password']));
-    $access = mysqli_real_escape_string($db, $_POST['access']);
-
-    $regCheck = "SELECT Login FROM Accounts WHERE Login = '$Login'";
-    $getValue = mysqli_query($db, $regCheck);
-
-    if ( mysqli_num_rows($getValue) > 0 )
-        echo '<span style="color: #ff0000; ">Логин занят</span>';
-    else if ( !mysqli_query($db, "INSERT INTO Accounts (Login,Password,access) VALUES ('$Login','$Password',0) ") ) {
-        header('Refresh: 10');
-        echo 'Произошла какая-то ошибка. <s>Страница обновится через 10 секунд</s>';
-    } else {
-        if ( isset($Login, $Password) ) {
-            if ( $result = !authentication($Login, $Password) ) {
-                echo '<span style="color: #ff0000; ">Произошла неизвестная ошибка</span>';
-            } else {
-                $_SESSION = array(
-                    'Login' => $Login,
-                    'Password' => $Password
-                );
-                header('Location: ' . URL);
-                exit;
-            }
-        }
-    }
-}
-?>
