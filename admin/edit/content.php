@@ -46,13 +46,7 @@ $assoc_2 = mysqli_fetch_assoc($query_2);
 
         <br><br>
 
-        <label for="access_input">Уровень доступа</label>
-        <select name="access" id="access_input">
-            <option value="<?php echo intval($assoc_2['access']); ?>">Текущий: <?php echo access($assoc_2['access']); ?></option>
-            <option disabled>|||||||||||||"</option>
-            <option value="0">Пользователь</option>
-            <option value="1">Администратор</option>
-        </select> <br><br>
+        
 
         <button type="submit" name="editProfile" class="">Сохранить</button>
 
@@ -63,7 +57,7 @@ $assoc_2 = mysqli_fetch_assoc($query_2);
  
 $user_Login = htmlspecialchars($assoc_2['Login']);
 
-$sql = "SELECT * FROM $user_Login";
+$sql = "SELECT * FROM $user_Login ORDER BY `transf_date` DESC";
 if($result = mysqli_query($db, $sql)){
      
     $rowsCount = mysqli_num_rows($result); // количество полученных строк
