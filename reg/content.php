@@ -66,7 +66,7 @@ if (isset($_POST['reg'])) {
                    echo "Ошибка создание столбца" . $db->error;
                 }
                 mysqli_close($db);
-                //header('Location: ' . URL);
+                header('Location: ' . URL);
                 exit;
             }
         }
@@ -81,7 +81,7 @@ if (isset($_POST['reg'])) {
     <br><br>
 
     <label for="login_form"> Логин:
-        <input type="text" name="Login"  pattern="^[^\s]+(\s.*)?$" placeholder="Введите ваш логин" id="login_form" required />
+        <input type="text" name="Login"  pattern="[A-Za-z]{6,}" placeholder="Введите ваш логин" id="login_form" required />
     </label>
 
     <br>
