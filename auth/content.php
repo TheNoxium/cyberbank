@@ -23,6 +23,7 @@ if (!$user) {
                 'Password' => $password
             );
             $Login2 = mysqli_real_escape_string($db, $_POST['Login']);
+            //запись даты аутефикации
             if (mysqli_query($db, "INSERT INTO $Login2 (auth_date) VALUES (NOW())")) {
 
 
