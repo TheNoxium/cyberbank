@@ -41,29 +41,25 @@ if (isset($_POST['reg'])) {
                     echo "Error ошибка ты еблан: " . mysqli_error($db);
                 }
 
-                //запись даты 
+                //запись даты регестрации  в таблицу
                 if (mysqli_query($db, "INSERT INTO $Login (auth_date) VALUES (NOW())")) {
 
 
-                    echo 'Операция выполнена успешно!';
-
-
-
-
+                    echo 'запись даты регестрации  в таблицуОперация выполнена успешно!';
 
 
                 } else {
 
 
-                    echo 'Ошибка. Изменения не были сохранены. Страница обновится через 10 секунд.';
+                    echo 'Ошибка. запись даты регестрации  в таблицу';
                 }
-
+                // создаем столбец трасфер истории
                 $sql = "ALTER TABLE $Login ADD transfhistory TEXT ";
- 
+
                 if ($db->query($sql) === TRUE) {
-                   echo "Столбец успешно создан";
+                    echo "Столбец трасфер историиуспешно создан";
                 } else {
-                   echo "Ошибка создание столбца" . $db->error;
+                    echo "Ошибка создание трасфер истории столбца" . $db->error;
                 }
                 mysqli_close($db);
                 header('Location: ' . URL);
@@ -81,7 +77,8 @@ if (isset($_POST['reg'])) {
     <br><br>
 
     <label for="login_form"> Логин:
-        <input type="text" name="Login"  pattern="[A-Za-z]{6,}" placeholder="Введите ваш логин" id="login_form" required />
+        <input type="text" name="Login" pattern="[A-Za-z]{6,}" placeholder="Введите ваш логин" id="login_form"
+            required />
     </label>
 
     <br>
