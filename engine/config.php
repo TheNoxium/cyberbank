@@ -8,7 +8,7 @@ ob_start();
  * Запускаем сессию
  */
 session_start();
-
+date_default_timezone_set('Asia/Yekaterinburg');
 
 /*
 * 1. Определяем протокол
