@@ -1,4 +1,5 @@
-
+Ваш Логин:
+<?php echo htmlspecialchars($user['Login']); ?><br>
 
 Ваш баланс:
 <?php echo htmlspecialchars($user['Balans']); ?><br>
@@ -10,7 +11,7 @@
 
 $user_Login = htmlspecialchars($user['Login']);
 
-$sql = "SELECT * FROM $user_Login";
+$sql = "SELECT * FROM $user_Login ORDER BY `transf_date` DESC limit 0,5";
 if($result = mysqli_query($db, $sql)){
      
     $rowsCount = mysqli_num_rows($result); // количество полученных строк

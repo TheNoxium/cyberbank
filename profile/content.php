@@ -8,7 +8,7 @@
 
 $user_Login = htmlspecialchars($user['Login']);
 
-$sql = "SELECT * FROM $user_Login";
+$sql = "SELECT * FROM $user_Login ORDER BY `auth_date` DESC limit 0,10";
 if($result = mysqli_query($db, $sql)){
      
     $rowsCount = mysqli_num_rows($result); // количество полученных строк
