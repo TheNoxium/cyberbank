@@ -4,22 +4,17 @@
 
 $user_Login = htmlspecialchars($user['Login']);
 
-$sql = "SELECT * FROM $user_Login";
-if($result = mysqli_query($db, $sql)){
-     
-    $rowsCount = mysqli_num_rows($result); // количество полученных строк
-    echo "<p>Получено объектов: $rowsCount</p>";
-    echo "<table><tr><th>reg_date</th>";
-    foreach($result as $row){
-        echo "<tr>";
-            echo "<td>" . $row["reg_date"] . "</td>";
-            
-        echo "</tr>";
-    }
-    echo "</table>";
-    mysqli_free_result($result);
-} else{
-    echo "Ошибка: " . mysqli_error($conn);
+ 
+// создаем столбец после поле description
+$sql = "ALTER TABLE $user_Login ADD transfhistory TEXT ";
+ 
+if ($db->query($sql) === TRUE) {
+   echo "Столбец успешно создан";
+} else {
+   echo "Ошибка создание столбца" . $db->error;
 }
-mysqli_close($db);
+
+
+ 
+$db->close();
 ?>
