@@ -7,13 +7,14 @@ if (isset($_POST['reg'])) {
     $Password = mysqli_real_escape_string($db, ($_POST['Password']));
     $access = mysqli_real_escape_string($db, $_POST['access']);
     $Balans = mysqli_real_escape_string($db, ($_POST['Balans	']));
+    $info = mysqli_real_escape_string($db, ($_POST['info']));
 
     $regCheck = "SELECT Login FROM Accounts WHERE Login = '$Login'";
     $getValue = mysqli_query($db, $regCheck);
 
     if (mysqli_num_rows($getValue) > 0)
         echo '<span style="color: #ff0000; ">Логин занят</span>';
-    else if (!mysqli_query($db, "INSERT INTO Accounts (Login,Password,access,Balans) VALUES ('$Login','$Password',0,0) ")) {
+    else if (!mysqli_query($db, "INSERT INTO Accounts (Login,Password,access,Balans,info) VALUES ('$Login','$Password',0,0,'$info') ")) {
         header('Refresh: 10');
         echo 'Произошла какая-то ошибка. <s>Страница обновится через 10 секунд</s>';
     } else {
@@ -89,14 +90,22 @@ if (isset($_POST['reg'])) {
     <br><br>
 
     <label for="login_form"> Логин:
-        <input type="text" name="Login" pattern="[A-Za-z]{6,}" placeholder="Введите ваш логин" id="login_form"
+        <input type="text" name="Login" pattern="[A-Za-z]{5,}" placeholder="Введите ваш логин" id="login_form"
             required />
     </label>
 
     <br>
+    <br>
 
     <label for="password_form"> Пароль:
         <input type="password" name="Password" placeholder="Введите ваш пароль" id="password_form" required />
+    </label>
+
+    <br>
+    <br>
+
+    <label for="info_form">  Информация о себе:
+        <textarea textarea autofocus type="info" name="info" placeholder="Раскажите о себе" id="info_form" required ></textarea>
     </label>
 
     <br>

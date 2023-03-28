@@ -90,8 +90,7 @@
 
 Ваш логин:
 <?php echo $user_Login; ?><br>
-Ваш айди:
-<?php echo $user_ID; ?><br>
+
 
 Ваш баланс:
 <?php echo $balans; ?><br>
