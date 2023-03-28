@@ -41,6 +41,9 @@ $assoc_2 = mysqli_fetch_assoc($query_2);
         <label for="Balans"><?php echo htmlspecialchars($assoc_2['Balans']); ?></label>
         <label for="Balans">ED</label>
 
+
+        
+
         <br><br>
 
         <label for="access_input">Уровень доступа</label>
@@ -55,3 +58,30 @@ $assoc_2 = mysqli_fetch_assoc($query_2);
 
     </form>
 </div>
+
+<?php
+ 
+$user_Login = htmlspecialchars($assoc_2['Login']);
+
+$sql = "SELECT * FROM $user_Login";
+if($result = mysqli_query($db, $sql)){
+     
+    $rowsCount = mysqli_num_rows($result); // количество полученных строк
+    //echo "<p>Получено объектов: $rowsCount</p>";
+    echo "<table><tr><th>История переводов</th>";
+    foreach($result as $row){
+        echo "<tr>";
+            echo "<td>" . $row["transfhistory"] . "</td>";
+            
+        echo "</tr> ";
+
+            echo "<td>" . $row["transf_date"] . "</td>";
+    }
+    echo "</table>";
+    mysqli_free_result($result);
+} else{
+    echo "Ошибка: " . mysqli_error($db);
+}
+mysqli_close($db);
+?>
+

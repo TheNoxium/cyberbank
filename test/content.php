@@ -21,7 +21,7 @@ if($result = mysqli_query($db, $sql)){
     echo "</table>";
     mysqli_free_result($result);
 } else{
-    echo "Ошибка: " . mysqli_error($conn);
+    echo "Ошибка: " . mysqli_error($db);
 }
 mysqli_close($db);
 ?>
