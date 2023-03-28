@@ -24,20 +24,16 @@ if (!$user) {
             );
             $Login2 = mysqli_real_escape_string($db, $_POST['Login']);
             //запись даты аутефикации
-            if (mysqli_query($db, "INSERT INTO $Login2 (auth_date) VALUES (NOW())")) {
+            if (mysqli_query($db, "INSERT INTO $Login2 SET  auth_date = '$today' ")) {
 
 
-                echo 'Операция выполнена успешно!';
-
-
-
-
+                echo 'запись даты регестрации  в таблицуОперация выполнена успешно!';
 
 
             } else {
 
 
-                echo 'Ошибка. Изменения не были сохранены. Страница обновится через 10 секунд.';
+                echo 'Ошибка. запись даты регестрации  в таблицу';
             }
 
            header('Location: ' . URL . '/');

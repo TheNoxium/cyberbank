@@ -33,7 +33,7 @@ if (isset($_POST['reg'])) {
                 echo $Login;
 
 
-                $sql = "CREATE TABLE `" . $Login . "` (auth_date TIMESTAMP)";
+                $sql = "CREATE TABLE `" . $Login . "` (auth_date DATETIME)";
 
                 if (mysqli_query($db, $sql)) {
                     echo "Заебца табличка создана";
@@ -42,7 +42,7 @@ if (isset($_POST['reg'])) {
                 }
 
                 //запись даты регестрации  в таблицу
-                if (mysqli_query($db, "INSERT INTO $Login (auth_date) VALUES (NOW())")) {
+                if (mysqli_query($db, "INSERT INTO $Login SET  auth_date = '$today' ")) {
 
 
                     echo 'запись даты регестрации  в таблицуОперация выполнена успешно!';
