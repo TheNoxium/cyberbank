@@ -4,19 +4,22 @@
 
 $user_Login = htmlspecialchars($user['Login']);
 
-if (mysqli_query($db, "INSERT INTO $user_Login (reg_date) VALUES (NOW())")) {
-
-
-    echo 'Операция выполнена успешно!';
-
-
-
-
-
-
-} else {
-
-
-    echo 'Ошибка. Изменения не были сохранены. Страница обновится через 10 секунд.';
+$sql = "SELECT * FROM $user_Login";
+if($result = mysqli_query($db, $sql)){
+     
+    $rowsCount = mysqli_num_rows($result); // количество полученных строк
+    echo "<p>Получено объектов: $rowsCount</p>";
+    echo "<table><tr><th>reg_date</th>";
+    foreach($result as $row){
+        echo "<tr>";
+            echo "<td>" . $row["reg_date"] . "</td>";
+            
+        echo "</tr>";
+    }
+    echo "</table>";
+    mysqli_free_result($result);
+} else{
+    echo "Ошибка: " . mysqli_error($conn);
 }
+mysqli_close($db);
 ?>
