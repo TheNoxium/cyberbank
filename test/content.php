@@ -4,10 +4,11 @@
 
 $user_Login = htmlspecialchars($user['Login']);
 
- 
+$today = date("Y-m-d H:i:s");    
+
 // Записываем логин в трасфер
 
-if (mysqli_query($db, "INSERT INTO $user_Login SET transfhistory = '$user_Login' ")) {
+if (mysqli_query($db, "INSERT INTO $user_Login SET transfhistory = '$user_Login', transf_date = '$today' ")) {
    
    echo 'Операция выполнена успешно!';
    
