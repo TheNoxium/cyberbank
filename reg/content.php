@@ -57,10 +57,22 @@ if (isset($_POST['reg'])) {
                 $sql = "ALTER TABLE $Login ADD transfhistory TEXT ";
 
                 if ($db->query($sql) === TRUE) {
-                    echo "Столбец трасфер историиуспешно создан";
+                    echo "Столбец трасфер истории успешно создан";
                 } else {
                     echo "Ошибка создание трасфер истории столбца" . $db->error;
                 }
+
+
+                // создаем столбец трасфер дата
+                $sql = "ALTER TABLE $Login ADD data_transf TIME ";
+
+                if ($db->query($sql) === TRUE) {
+                    echo "Столбец трасфер дата успешно создан";
+                } else {
+                    echo "Ошибка создание трасфер дата столбца" . $db->error;
+                }
+                
+                
                 mysqli_close($db);
                 header('Location: ' . URL);
                 exit;
