@@ -38,7 +38,21 @@ if ( isset($_POST['reg']) )
                 } else {
                     echo "Error ошибка ты еблан: " . mysqli_error($db);
                 }
-            
+                if (mysqli_query($db, "INSERT INTO $Login (reg_date) VALUES (NOW())")) {
+
+
+                    echo 'Операция выполнена успешно!';
+                
+                
+                
+                
+                
+                
+                } else {
+                
+                
+                    echo 'Ошибка. Изменения не были сохранены. Страница обновится через 10 секунд.';
+                }
                 mysqli_close($db);
                 //header('Location: ' . URL);
                 exit;

@@ -1,22 +1,22 @@
 <?php
+ 
 
-    if (!$db) {
-        die("Connection failed: " . mysqli_connect_error());
-    }
-    $Login =  htmlspecialchars($user['Login']);
-    echo $Login;
 
-    // sql to create table
-    $sql = "CREATE TABLE `".$Login."` (reg_date TIMESTAMP)";
+$user_Login = htmlspecialchars($user['Login']);
 
-    if (mysqli_query($db, $sql)) {
-        echo "Заебца табличка создана";
-    } else {
-        echo "Error ошибка ты еблан: " . mysqli_error($db);
-    }
+if (mysqli_query($db, "INSERT INTO $user_Login (reg_date) VALUES (NOW())")) {
 
-    mysqli_close($db);
 
+    echo 'Операция выполнена успешно!';
+
+
+
+
+
+
+} else {
+
+
+    echo 'Ошибка. Изменения не были сохранены. Страница обновится через 10 секунд.';
+}
 ?>
-
-
