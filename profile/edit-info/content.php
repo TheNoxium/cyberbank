@@ -1,17 +1,13 @@
 <?php
 $user_ID = intval($user['ID']);
 
-if (isset($_POST['edit']))
-{
-    $Login = mysqli_real_escape_string($db, $_POST['Login']);
+if (isset($_POST['edit'])) {
+    $info = mysqli_real_escape_string($db, $_POST['info']);
 
-    if (mysqli_query($db,"UPDATE Accounts SET Login='$Login' WHERE id = '$user_ID';"))
-    {
+    if (mysqli_query($db, "UPDATE Accounts SET info='$info' WHERE id = '$user_ID';")) {
         header("Refresh: 3; ../../profile");
         echo 'Операция выполнена успешно!';
-    }
-    else
-    {
+    } else {
         header('Refresh: 10');
         echo 'Ошибка. Изменения не были сохранены. Страница обновится через 10 секунд.';
     }
@@ -21,10 +17,14 @@ if (isset($_POST['edit']))
 <div id="edit">
     <form method="post">
 
-        <h3>Редактирование вашего профиля №<?php echo $user_ID; ?></h3>
+        <h3>Редактирование вашего профиля №
+            <?php echo $user_ID; ?>
+        </h3>
 
-        <label for="login_input">Логин</label>
-        <input name="Login" type="text" id="login_input" placeholder="Введите логин" value="<?php echo htmlspecialchars($user['Login']); ?>" required>
+
+        <label for="info_form"> Информация о себе:
+            <textarea textarea autofocus type="info" name="info" placeholder="<?php echo htmlspecialchars($user['info']); ?>" id="info_form" required></textarea>
+        </label>
 
         <br><br>
 
