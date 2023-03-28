@@ -64,7 +64,7 @@ if (isset($_POST['reg'])) {
 
 
                 // создаем столбец трасфер дата
-                $sql = "ALTER TABLE $Login ADD transf_date DATE ";
+                $sql = "ALTER TABLE $Login ADD transf_date DATETIME ";
 
                 if ($db->query($sql) === TRUE) {
                     echo "Столбец трасфер дата успешно создан";
