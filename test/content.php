@@ -4,27 +4,25 @@
 
 $user_Login = htmlspecialchars($user['Login']);
 
-$today = date("Y-m-d H:i:s");    
+$sql = "SELECT * FROM $user_Login";
+if($result = mysqli_query($db, $sql)){
+     
+    $rowsCount = mysqli_num_rows($result); // количество полученных строк
+    //echo "<p>Получено объектов: $rowsCount</p>";
+    echo "<table><tr><th>Дата последнего входа</th>";
+    foreach($result as $row){
+        echo "<tr>";
+            echo "<td>" . $row["transfhistory"] . "</td>";
+            
+        echo "</tr> ";
 
-// Записываем логин в трасфер
-
-if (mysqli_query($db, "INSERT INTO $user_Login SET transfhistory = '$user_Login', transf_date = '$today' ")) {
-   
-   echo 'Операция выполнена успешно!';
-   
-   header('Refresh: 5, url=../');
-   exit;
-
-
-
-
-
-} else {
-   header('Refresh: 10');
-
-   echo 'Ошибка. Изменения не были сохранены. Страница обновится через 10 секунд.';
+            echo "<td>" . $row["transf_date"] . "</td>";
+    }
+    echo "</table>";
+    mysqli_free_result($result);
+} else{
+    echo "Ошибка: " . mysqli_error($conn);
 }
-
- 
-$db->close();
+mysqli_close($db);
 ?>
+

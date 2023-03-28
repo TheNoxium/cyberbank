@@ -48,6 +48,9 @@
                     if (mysqli_query($db, "UPDATE Accounts SET Balans='$balansfinaltransfer2' WHERE `login`='$Logintransfer'")) {
                         $balans = $balansfinal;
                         mysqli_query($db, "UPDATE Accounts SET Balans='$balansfinaltransfer' WHERE `login`='$user_Login'");
+
+                        mysqli_query($db, "INSERT INTO $user_Login SET transfhistory = 'Перевод пользователю $Logintransfer в размере $balanstransfer. Остаток по счету : $balansfinal ', transf_date = '$today' ");
+
                         echo 'Операция выполнена успешно!';
                         
                         header('Refresh: 5, url=../');
