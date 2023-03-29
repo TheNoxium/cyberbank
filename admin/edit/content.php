@@ -9,8 +9,9 @@ $assoc_2 = mysqli_fetch_assoc($query_2);
         $Login = mysqli_real_escape_string($db, $_POST['Login']);
         $Password = mysqli_real_escape_string($db, ($_POST['Password']));
         $access = mysqli_real_escape_string($db, $_POST['access']);
+        $info = mysqli_real_escape_string($db, $_POST['info']);
 
-        if (mysqli_query($db,"UPDATE Accounts SET Login='$Login',Password='$Password',access='$access' WHERE id = '$id';"))
+        if (mysqli_query($db,"UPDATE Accounts SET Login='$Login',Password='$Password',access='$access',info='$info' WHERE id = '$id';"))
         {
             header("Refresh: 3; ../list");
             echo 'Операция выполнена успешно!';
@@ -37,11 +38,25 @@ $assoc_2 = mysqli_fetch_assoc($query_2);
 
         <br><br>
 
+       
+
+        <label for="info_form"> Информация о себе:</label>
+        <textarea  type="info" name="info"  placeholder="<?php echo htmlspecialchars($assoc_2['info']); ?>" id="info_form" required></textarea>
+        
+
+        <br><br>
+
         <label for="Balans">Баланс:</label>
         <label for="Balans"><?php echo htmlspecialchars($assoc_2['Balans']); ?></label>
         <label for="Balans">ED</label>
+        <br><br>
+        
+        <label for="Info">Информация о пользователе:</label> <?php echo htmlspecialchars($assoc_2['info']); ?>
 
         <br><br>
+        
+
+
 
         <label for="access_input">Уровень доступа</label>
         <select name="access" id="access_input">
