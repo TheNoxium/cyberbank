@@ -25,6 +25,7 @@ $assoc_2 = mysqli_fetch_assoc($query_2);
 }
 ?>
 
+
 <div id="edit-bloc">
     <form method="post">
 
@@ -40,7 +41,7 @@ $assoc_2 = mysqli_fetch_assoc($query_2);
 
        
 
-        <label for="info_form"> Информация о себе:</label>
+        <label for="info_form"> Информация о пользователе:</label>
         <textarea  type="info" name="info"  placeholder="<?php echo htmlspecialchars($assoc_2['info']); ?>" id="info_form" required></textarea>
         
 
