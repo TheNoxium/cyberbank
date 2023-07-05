@@ -17,7 +17,7 @@ function access($getAccess)
 {
     switch ($getAccess) {
         case 1:
-            return '<a href="../admin/list">[Администрирование]</a>';
+            return '<span style="color: RED; ">Администратор</span>';
         default:
             return '<span style="color: GREEN; ">Пользователь</span>';
     }

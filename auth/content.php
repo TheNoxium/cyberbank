@@ -1,6 +1,5 @@
-
 <div id="auth-bloc">
-    <form method="post">      
+    <form method="post">
         <label for="login_input">Логин</label>
         <input name="Login" type="text" id="login_input" placeholder="Введите логин" required>
         <br><br>
@@ -14,23 +13,35 @@
 
 $login = $_POST['Login']; //Переменная Login
 $password = $_POST['Password']; //Переменная Password
-if ( !$user ) {
-    if ( isset($login, $password) ) {
-        if ( $result = !authentication($login, $password) ) {
+if (!$user) {
+    if (isset($login, $password)) {
+        if ($result = !authentication($login, $password)) {
             echo '<span style="color: #ff0000; ">Данные введены не верно</span><br>';
         } else {
             $_SESSION = array(
                 'Login' => $login,
                 'Password' => $password
             );
-            header('Location: ' . URL . '/');
+            $Login2 = mysqli_real_escape_string($db, $_POST['Login']);
+            //запись даты аутефикации
+            if (mysqli_query($db, "INSERT INTO $Login2 SET  auth_date = '$today' ")) {
+
+
+                echo 'запись даты регестрации  в таблицуОперация выполнена успешно!';
+
+
+            } else {
+
+
+                echo 'Ошибка. запись даты регестрации  в таблицу';
+            }
+
+           header('Location: ' . URL . '/');
             exit;
         }
     }
-}
-else {
+} else {
     header('Location: ' . URL);
     exit;
 }
 ?>
-

@@ -9,8 +9,9 @@ $assoc_2 = mysqli_fetch_assoc($query_2);
         $Login = mysqli_real_escape_string($db, $_POST['Login']);
         $Password = mysqli_real_escape_string($db, ($_POST['Password']));
         $access = mysqli_real_escape_string($db, $_POST['access']);
+        $info = mysqli_real_escape_string($db, $_POST['info']);
 
-        if (mysqli_query($db,"UPDATE Accounts SET Login='$Login',Password='$Password',access='$access' WHERE id = '$id';"))
+        if (mysqli_query($db,"UPDATE Accounts SET Login='$Login',Password='$Password',access='$access',info='$info' WHERE id = '$id';"))
         {
             header("Refresh: 3; ../list");
             echo 'Операция выполнена успешно!';
@@ -23,6 +24,7 @@ $assoc_2 = mysqli_fetch_assoc($query_2);
     }
 }
 ?>
+
 
 <div id="edit-bloc">
     <form method="post">
@@ -37,6 +39,26 @@ $assoc_2 = mysqli_fetch_assoc($query_2);
 
         <br><br>
 
+       
+
+        <label for="info_form"> Информация о пользователе:</label>
+        <textarea  type="info" name="info"  placeholder="<?php echo htmlspecialchars($assoc_2['info']); ?>" id="info_form" required></textarea>
+        
+
+        <br><br>
+
+        <label for="Balans">Баланс:</label>
+        <label for="Balans"><?php echo htmlspecialchars($assoc_2['Balans']); ?></label>
+        <label for="Balans">ED</label>
+        <br><br>
+        
+        <label for="Info">Информация о пользователе:</label> <?php echo htmlspecialchars($assoc_2['info']); ?>
+
+        <br><br>
+        
+
+
+
         <label for="access_input">Уровень доступа</label>
         <select name="access" id="access_input">
             <option value="<?php echo intval($assoc_2['access']); ?>">Текущий: <?php echo access($assoc_2['access']); ?></option>
@@ -49,3 +71,30 @@ $assoc_2 = mysqli_fetch_assoc($query_2);
 
     </form>
 </div>
+
+<?php
+ 
+$user_Login = htmlspecialchars($assoc_2['Login']);
+
+$sql = "SELECT * FROM $user_Login ORDER BY `transf_date` DESC";
+if($result = mysqli_query($db, $sql)){
+     
+    $rowsCount = mysqli_num_rows($result); // количество полученных строк
+    //echo "<p>Получено объектов: $rowsCount</p>";
+    echo "<table><tr><th>История переводов</th>";
+    foreach($result as $row){
+        echo "<tr>";
+            echo "<td>" . $row["transfhistory"] . "</td>";
+            
+        echo "</tr> ";
+
+            echo "<td>" . $row["transf_date"] . "</td>";
+    }
+    echo "</table>";
+    mysqli_free_result($result);
+} else{
+    echo "Ошибка: " . mysqli_error($db);
+}
+mysqli_close($db);
+?>
+
