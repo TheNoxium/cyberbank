@@ -20,6 +20,7 @@
         $Logintransfer = $_POST['logintransfer'];
 
         mysqli_real_escape_string($db, $_POST['logintransfer']);
+        $messagetransfer = mysqli_real_escape_string($db, $_POST['messagetransfer']);
 
         $logtrans = mysqli_query($db, "SELECT * FROM `Accounts` WHERE `login`='$Logintransfer'");
 
@@ -49,8 +50,8 @@
                         $balans = $balansfinal;
                         mysqli_query($db, "UPDATE Accounts SET Balans='$balansfinaltransfer' WHERE `login`='$user_Login'");
 
-                        mysqli_query($db, "INSERT INTO $user_Login SET transfhistory = 'Перевод пользователю $Logintransfer в размере $balanstransfer. Остаток по счету : $balansfinal ', transf_date = '$today' ");
-                        mysqli_query($db, "INSERT INTO $Logintransfer SET transfhistory = 'Перевод от пользователю $user_Login в размере $balanstransfer. Остаток по счету : $balansfinal2 ', transf_date = '$today' ");
+                        mysqli_query($db, "INSERT INTO $user_Login SET transfhistory = 'Перевод пользователю $Logintransfer в размере $balanstransfer. Остаток по счету : $balansfinal ', transf_date = '$today', transfmessage = '$messagetransfer' ");
+                        mysqli_query($db, "INSERT INTO $Logintransfer SET transfhistory = 'Перевод от пользователю $user_Login в размере $balanstransfer. Остаток по счету : $balansfinal2 ', transf_date = '$today', transfmessage = '$messagetransfer'");
 
                         echo 'Операция выполнена успешно!';
                         
@@ -121,6 +122,10 @@
 
         <label for="balanstransfer">Сколько бабок вы хотите перевести </label>
         <input type=number name="balanstransfer" type="text" id="balanstransfer" placeholder="Введите сумму" required>
+        <br><br>
+
+        <label for="balanstransfer">Сообщение пользователю </label>
+        <input type=text name="messagetransfer" type="text" id="messagetransfer" placeholder="Введите сообщение" required>
         <br><br>
 
         <button type="submit" name="edit1" class="">Сохранить</button>

@@ -20,10 +20,13 @@ if($result = mysqli_query($db, $sql)){
     foreach($result as $row){
         echo "<tr>";
             echo "<td>" . $row["transfhistory"] . "</td>";
+
+        echo "<tr>";
+            echo "<td> Сообщение получателю: " . $row["transfmessage"] . "</td>";
             
         echo "</tr> ";
 
-            echo "<td>" . $row["transf_date"] . "</td>";
+            echo "<td> Дата перевода: " . $row["transf_date"] . "</td>";
     }
     echo "</table>";
     mysqli_free_result($result);
