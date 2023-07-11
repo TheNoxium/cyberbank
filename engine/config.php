@@ -8,7 +8,8 @@ ob_start();
  * Запускаем сессию
  */
 session_start();
-
+date_default_timezone_set('Asia/Yekaterinburg');
+$today = date("Y-m-d H:i:s");  
 
 /*
 * 1. Определяем протокол
@@ -30,6 +31,10 @@ require_once('functions.php');
  * Проверка на авторизацию
  */
 $user = isset($_SESSION['Login'], $_SESSION['Password']) ? authentication($_SESSION['Login'], $_SESSION['Password']) : 0;
+
+
+
+
 
 switch ($user && isset($_GET['logout'])) {
     case 'logout':

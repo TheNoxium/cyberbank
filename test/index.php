@@ -1,8 +1,9 @@
-<?php
-
-require_once '../engine/config.php';
-
-
+<?php require_once '../engine/config.php';
+if (!$user)
+{
+    header('Location: ' . URL . '/auth');
+    exit;
+}
 ?>
 
 
@@ -11,7 +12,7 @@ require_once '../engine/config.php';
 
 <head>
     <?php require_once '../engine/head.php'; ?>
-    <title>Регистрация</title>
+    <title>Авторизация</title>
 </head>
 
 <body>
