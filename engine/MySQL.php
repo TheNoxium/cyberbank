@@ -2,7 +2,7 @@
 /*
  * Данные для подключения к БД MYSQL
  */
-define('DB_Host', '192.168.1.94');
+define('DB_Host', '172.20.10.2');
 define('DB_User', 'pipa');
 define('DB_Password', '12345');
 define('DB_Name', 'cyberbank');

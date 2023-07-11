@@ -17,19 +17,25 @@ if (isset($_POST['edit-passwd']))
     }
 }
 ?>
+
+<div id="nav-link ">
+
+     <div class="submitButton3 ">
 <div id="edit-passwd">
     <form method="post">
 
         <h3>Редактирование пароля к аккаунту № <?php echo $id; ?></h3>
 
         <label for="password_input">Пароль</label>
-        <input name="Password" type="text" id="password_input" placeholder="<?php echo htmlspecialchars($user['Password']); ?>" required>
+        <input  class="reg_inputs1" name="Password" type="text" id="password_input" placeholder="<?php echo htmlspecialchars($user['Password']); ?>" required>
 
         <br><br>
 
-        <button type="submit" name="edit-passwd" class="">Сохранить</button>
+        <button class="submitButton2" type="submit" name="edit-passwd" class="">Сохранить</button>
         <br><br><br>
         <a href="../" class="">Назад</a>
 
     </form>
+</div>
+</form>
 </div>

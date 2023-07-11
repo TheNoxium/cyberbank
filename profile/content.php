@@ -1,11 +1,11 @@
+
+<div id="nav-link ">
+
+     <div class="submitButton3 ">
 Ваш логин: <?php echo htmlspecialchars($user['Login']); ?> <a href="edit">[Изменить]</a><br>
 Ваш пароль: <?php echo htmlspecialchars($user['Password']); ?> <a href="edit-passwd">[Изменить]</a><br>
 Информация о вас: <?php echo htmlspecialchars($user['info']); ?> <a href="edit-info">[Изменить]</a><br>
-Ваши права: <?php echo access($user['access']); ?> 
-
-<?php
- 
-
+Ваши права: <?php echo access($user['access']); 
 
 $user_Login = htmlspecialchars($user['Login']);
 
@@ -27,4 +27,9 @@ if($result = mysqli_query($db, $sql)){
     echo "Ошибка: " . mysqli_error($conn);
 }
 mysqli_close($db);
-?>
+?> 
+
+</div>
+
+</form>
+

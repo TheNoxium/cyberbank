@@ -17,20 +17,24 @@ if (isset($_POST['edit']))
     }
 }
 ?>
+<div id="nav-link ">
 
+<div class="submitButton3 ">
 <div id="edit">
     <form method="post">
 
         <h3>Редактирование вашего профиля №<?php echo $user_ID; ?></h3>
 
         <label for="login_input">Логин</label>
-        <input name="Login" type="text" id="login_input" placeholder="Введите логин" value="<?php echo htmlspecialchars($user['Login']); ?>" required>
+        <input class="reg_inputs1"  name="Login" type="text" id="login_input" placeholder="Введите логин" value="<?php echo htmlspecialchars($user['Login']); ?>" required>
 
         <br><br>
 
-        <button type="submit" name="edit" class="">Сохранить</button>
+        <button class="submitButton2" type="submit" name="edit" class="">Сохранить</button>
         <br><br><br>
         <a href="../" class="">Назад</a>
 
     </form>
+</div>
+</form>
 </div>

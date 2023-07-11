@@ -1,4 +1,9 @@
 
+
+<div id="nav-link ">
+
+<div class="submitButton3 ">
+
 <h1>Список пользователей сайта:</h1>
 
 <ul>
@@ -9,3 +14,6 @@ echo '<li><a href="'.URL.'/admin/edit/?id='.intval($assoc_1['ID']).'">' . htmlsp
 }
 ?>
 </ul>
+
+</form>
+</div>

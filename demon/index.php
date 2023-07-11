@@ -2,17 +2,12 @@
 
 require_once '../engine/config.php';
 
-if (!$user)
-{
-    header('Location: ' . URL . '/auth');
-    exit;
-}
+
 ?>
 
 
 <!doctype html>
 <html lang="ru">
-<link rel="stylesheet" type="text/css" href="../../style.css">
 
 <head>
     <?php require_once '../engine/head.php'; ?>

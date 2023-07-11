@@ -94,14 +94,26 @@ if (isset($_POST['reg'])) {
 }
 ?>
 
+<div id="reg-bloc">
+<div class="reg">
+    
+<form method="POST">
 
-<form id="reg_form" method="POST">
     <b>Регистрация</b><br><br>
-
+    
     <br><br>
 
-    <label for="login_form"> Логин:
-        <input type="text" name="Login" pattern="[A-Za-z]{5,}" placeholder="Введите ваш логин" id="login_form"
+ 
+
+    <label for="login_form"> 
+
+        <div class="block"> <!-- контейнер -->
+ <a href="#"  class="focus">Логин:</a>
+  </style> <!-- видимый элемент -->
+ <span class="hidden">	Не менее пяти латинских букв</span> <!-- скрытый элемент -->
+ </div>
+        
+        <input title="Не менее пяти латинских букв" class="reg_inputs"  type="text" name="Login" pattern="[A-Za-z]{5,}" placeholder="Введите ваш логин" id="login_form"
             required />
     </label>
 
@@ -109,21 +121,27 @@ if (isset($_POST['reg'])) {
     <br>
 
     <label for="password_form"> Пароль:
-        <input type="password" name="Password" placeholder="Введите ваш пароль" id="password_form" required />
+
+      
+
+        <input class="reg_inputs" type="password" name="Password" placeholder="Введите ваш пароль" id="password_form" required />
     </label>
 
     <br>
     <br>
 
-    <label for="info_form">  Информация о себе:
-        <textarea textarea autofocus type="info" name="info" placeholder="Раскажите о себе" id="info_form" required ></textarea>
+    <label  for="info_form">  Информация о себе:
+        <textarea class="reg_inputs2" textarea autofocus type="info" name="info" placeholder="Раскажите о себе" id="info_form" required ></textarea>
     </label>
 
     <br>
     <br>
 
-    <button type="submit" name="reg">Сохранить изменения</button>
-    <button type="reset">Сбросить</button>
+    <button class="submitButton2"  type="submit" name="reg">Сохранить изменения</button>
+    <button class="submitButton2" type="reset">Сбросить</button>
+    
 </form>
 
-<a href="<?php echo URL ?>">На главную</a>
+</div>
+</div>
+

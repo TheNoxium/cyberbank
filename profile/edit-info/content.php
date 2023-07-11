@@ -13,7 +13,9 @@ if (isset($_POST['edit'])) {
     }
 }
 ?>
+<div id="nav-link ">
 
+<div class="submitButton3 ">
 <div id="edit">
     <form method="post">
 
@@ -23,14 +25,16 @@ if (isset($_POST['edit'])) {
 
 
         <label for="info_form"> Информация о себе:
-            <textarea textarea autofocus type="info" name="info" placeholder="<?php echo htmlspecialchars($user['info']); ?>" id="info_form" required></textarea>
+            <textarea class="reg_inputs3" textarea autofocus type="info" name="info" placeholder="<?php echo htmlspecialchars($user['info']); ?>" id="info_form" required></textarea>
         </label>
 
         <br><br>
 
-        <button type="submit" name="edit" class="">Сохранить</button>
+        <button class="submitButton2" type="submit" name="edit" class="">Сохранить</button>
         <br><br><br>
         <a href="../" class="">Назад</a>
 
     </form>
+</div>
+</form>
 </div>

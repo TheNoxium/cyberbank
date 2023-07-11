@@ -25,24 +25,27 @@ $assoc_2 = mysqli_fetch_assoc($query_2);
 }
 ?>
 
+<div id="nav-link ">
+
+<div class="submitButton3 ">
 
 <div id="edit-bloc">
     <form method="post">
 
         <label for="login_input">Логин</label>
-        <input name="Login" type="text" id="login_input" placeholder="Введите логин" value="<?php echo htmlspecialchars($assoc_2['Login']); ?>" required>
+        <input class="reg_inputs1"   name="Login" type="text" id="login_input" placeholder="Введите логин" value="<?php echo htmlspecialchars($assoc_2['Login']); ?>" required>
 
         <br><br>
 
         <label for="password_input">Пароль</label>
-        <input name="Password" type="text" id="password_input" placeholder="<?php echo htmlspecialchars($assoc_2['Password']); ?>" required>
+        <input class="reg_inputs1"  name="Password" type="text" id="password_input" value="<?php echo htmlspecialchars($assoc_2['Password']); ?>" >
 
         <br><br>
 
        
 
         <label for="info_form"> Информация о пользователе:</label>
-        <textarea  type="info" name="info"  placeholder="<?php echo htmlspecialchars($assoc_2['info']); ?>" id="info_form" required></textarea>
+        <textarea class="reg_inputs3"   type="info" name="info"  placeholder="<?php echo htmlspecialchars($assoc_2['info']); ?>" id="info_form" required ></textarea>
         
 
         <br><br>
@@ -62,14 +65,16 @@ $assoc_2 = mysqli_fetch_assoc($query_2);
         <label for="access_input">Уровень доступа</label>
         <select name="access" id="access_input">
             <option value="<?php echo intval($assoc_2['access']); ?>">Текущий: <?php echo access($assoc_2['access']); ?></option>
-            <option disabled>|||||||||||||"</option>
+            
             <option value="0">Пользователь</option>
             <option value="1">Администратор</option>
         </select> <br><br>
 
-        <button type="submit" name="editProfile" class="">Сохранить</button>
-
+        <button class="submitButton2" type="submit" name="editProfile" class="">Сохранить</button>
+        <a href="../../" class="">Назад</a>
     </form>
+</div>
+</form>
 </div>
 
 <?php

@@ -1,9 +1,7 @@
 <pre>
     <?php
 
-    $balans = htmlspecialchars($user['Balans']);
-    $user_ID = intval($user['ID']);
-    $user_Login = htmlspecialchars($user['Login']);
+
 
     if (isset($_POST['edit1'])) {
 
@@ -89,26 +87,17 @@
     ?>
 </pre>
 
-Ваш логин:
-<?php echo $user_Login; ?><br>
 
 
-Ваш баланс:
-<?php echo $balans; ?><br>
+<div id="nav-link ">
 
-<!-- проверка балансов абаонента 
+     <div class="submitButton3 ">
+     <?php
 
-Баланс абонента:
-<?php echo $balans2; ?><br>
-
-Итог абонента:
-<?php echo $balansfinal2; ?><br>
-Итог ваш:
-<?php echo $balansfinal; ?><br>
-
--->
-
-
+     $balans = htmlspecialchars($user['Balans']);
+    $user_ID = intval($user['ID']);
+    $user_Login = htmlspecialchars($user['Login']);
+    ?>
 <div id="edit">
     <form method="post">
 
@@ -116,21 +105,21 @@
             <?php echo $user_Login; ?>
         </h3>
 
-        <label for="logintransfer">Логин куда вы хотите послать бабки</label>
-        <input name="logintransfer" type="text" id="logintransfer" placeholder="Введите логин" required>
+        <label for="logintransfer">Логин кому вы хотите послать средства</label>
+        <input class="reg_inputs1" name="logintransfer" type="text" id="logintransfer" placeholder="Введите логин" required>
         <br><br>
 
-        <label for="balanstransfer">Сколько бабок вы хотите перевести </label>
-        <input type=number name="balanstransfer" type="text" id="balanstransfer" placeholder="Введите сумму" required>
+        <label for="balanstransfer">Сколько средств вы хотите перевести </label>
+        <input class="reg_inputs1" type=number name="balanstransfer" type="text" id="balanstransfer" placeholder="Введите сумму" required>
         <br><br>
 
         <label for="balanstransfer">Сообщение пользователю </label>
-        <input type=text name="messagetransfer" type="text" id="messagetransfer" placeholder="Введите сообщение" required>
+        <input class="reg_inputs1" type=text name="messagetransfer" type="text" id="messagetransfer" placeholder="Введите сообщение" required>
         <br><br>
 
-        <button type="submit" name="edit1" class="">Сохранить</button>
+        <button class="submitButton2 type="submit" name="edit1" class="">Перевести</button>
         <br><br><br>
-        <a href="../" class="">Назад</a>
-
+        
+        </div>
     </form>
 </div>
