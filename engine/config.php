@@ -7,8 +7,7 @@ ob_start();
 /*
  * Запускаем сессию
  */
-ini_set('session.gc_maxlifetime', 30000);
-ini_set('session.cookie_lifetime', 30000);
+
 
 
 session_start();

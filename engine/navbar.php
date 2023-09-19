@@ -17,8 +17,9 @@ switch (!$user) {
     case 1:
         echo '
                                     <li class="nav-item"><a href="' . URL . '/auth/" class="nav-link a-btn">Вход</a></li>
-                                    <li class="nav-item"><a href="' . URL . '/reg/" class="nav-link a-btn">Регистрация</a></li>
+                                    <li class="nav-item"><a href="' . URL . '/reg/" class="nav-link a-btn">Регистрация</a></li>                                   
                                     <li class="nav-item"><a href="' . URL . '/demon/" class="nav-link a-btn">Взлом</a></li>';
+                                    
                                     
         break;
     case 0:

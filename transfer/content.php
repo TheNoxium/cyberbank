@@ -1,7 +1,9 @@
 <pre>
     <?php
 
-
+    $balans = htmlspecialchars($user['Balans']);
+    $user_ID = intval($user['ID']);
+    $user_Login = htmlspecialchars($user['Login']);
 
     if (isset($_POST['edit1'])) {
 
@@ -51,7 +53,7 @@
                         mysqli_query($db, "INSERT INTO $user_Login SET transfhistory = 'Перевод пользователю $Logintransfer в размере $balanstransfer. Остаток по счету : $balansfinal ', transf_date = '$today', transfmessage = '$messagetransfer' ");
                         mysqli_query($db, "INSERT INTO $Logintransfer SET transfhistory = 'Перевод от пользователю $user_Login в размере $balanstransfer. Остаток по счету : $balansfinal2 ', transf_date = '$today', transfmessage = '$messagetransfer'");
 
-                        echo 'Операция выполнена успешно!';
+                        echo '<span style="color: #00ff00; ">Операция выполнена успешно!';
                         
                         header('Refresh: 5, url=../');
                         exit;
@@ -63,21 +65,21 @@
                     } else {
                         header('Refresh: 10');
 
-                        echo 'Ошибка. Изменения не были сохранены. Страница обновится через 10 секунд.';
+                        echo '<span style="color: #ff0000; "> Ошибка. Изменения не были сохранены. Страница обновится через 10 секунд.';
                     }
 
                 } else {
-                    echo 'Ошибка. НЕльзя переводить деньги себе.';
+                    echo '<span style="color: #ff0000; "> Ошибка. Нельзя переводить деньги себе.';
                 }
 
             } else {
-                echo 'Ошибка. НЕхватает денег.';
+                echo '<span style="color: #ff0000; "> Ошибка. Нехватает денег.';
             }
 
         } else {
 
 
-            echo 'Ошибка. НЕ ВЕРНЫЕ ДАННЫЕ.';
+            echo '<span style="color: #ff0000; "> Ошибка. Полльзователь с таким логином не найден.';
         }
     }
 
@@ -87,6 +89,24 @@
     ?>
 </pre>
 
+Ваш логин:
+<?php echo $user_Login; ?><br>
+
+
+Ваш баланс:
+<?php echo $balans; ?><br>
+
+<!-- проверка балансов абаонента 
+
+Баланс абонента:
+<?php echo $balans2; ?><br>
+
+Итог абонента:
+<?php echo $balansfinal2; ?><br>
+Итог ваш:
+<?php echo $balansfinal; ?><br>
+
+-->
 
 
 <div id="nav-link ">
@@ -117,7 +137,7 @@
         <input class="reg_inputs1" type=text name="messagetransfer" type="text" id="messagetransfer" placeholder="Введите сообщение" required>
         <br><br>
 
-        <button class="submitButton2 type="submit" name="edit1" class="">Перевести</button>
+        <button class="submitButton2" type="submit" name="edit1" >Перевести</button>
         <br><br><br>
         
         </div>
